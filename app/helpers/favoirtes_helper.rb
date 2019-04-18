@@ -1,0 +1,2 @@
+module FavoirtesHelper
+end
