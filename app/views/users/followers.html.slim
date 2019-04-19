@@ -1,0 +1,28 @@
+.row
+  aside.col-sm-4
+    .card
+      .card-header
+        h3.card-title = @user.name
+      .card-body
+        img.rounded.img-fluid src=gravatar_url(@user, { size: 500 }) alt=""
+    = render 'relationships/follow_button', user: @user
+  .col-sm-8
+    ul.nav.nav-tabs.nav-justified.mb-4
+      li.nav-item
+        a class="nav-link #{'active' if current_page?(user_path(@user))}" href=user_path(@user)
+          'Microposts
+          span.badge.badge-secondary = @count_microposts
+      li.nav-item
+        a class="nav-link #{'active' if current_page?(followings_user_path(@user))}" href=followings_user_path(@user)
+          'Followings
+          span.badge.badge-secondary = @count_followings
+      li.nav-item
+        a class="nav-link #{'active' if current_page?(followers_user_path(@user))}" href=followers_user_path(@user)
+          'Followers
+          span.badge.badge-secondary = @count_followers
+      li.nav-item
+        a class="nav-link #{'active' if current_page?(likes_user_path(@user))}" href=likes_user_path(@user)
+          'Likes
+          span.badge.badge-secondary = @count_likes
+    = render 'users',  users: @followers
+  
